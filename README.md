@@ -96,3 +96,9 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+
+## Stripe en local
+- `docker run --rm -it stripe/stripe-cli:latest`
+- `stripe listen --forward-to localhost:4242/webhook`
+- `stripe trigger payment_intent.succeeded`
