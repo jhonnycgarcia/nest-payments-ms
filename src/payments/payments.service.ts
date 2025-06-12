@@ -9,8 +9,29 @@ export class PaymentsService {
 
   private readonly stripe = new Stripe(envs.STRIPE_SECRET);
 
-  create(createPaymentDto: CreatePaymentDto) {
-    return 'This action adds a new payment';
+  async createPaymentSessio(createPaymentDto: CreatePaymentDto) {
+    const session = await this.stripe.checkout.sessions.create({
+      // colocar aqui el ID de mi ordern
+      payment_intent_data: {
+        metadata: {},
+      },
+      line_items: [
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: 'T-shirt',
+            },
+            unit_amount: 2000, /// 20 dólares 2000 / 100 = 20
+          },
+          quantity: 1,
+        }
+      ],
+      mode: 'payment',
+      success_url: 'http://localhost:3003/payments/success',
+      cancel_url: 'http://localhost:3003/payments/cancel',
+    });
+    return session;
   }
 
   findAll() {

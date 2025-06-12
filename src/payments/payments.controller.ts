@@ -9,7 +9,7 @@ export class PaymentsController {
 
   @Post('create-payment-session')
   createPaymentSession(@Body() createPaymentDto: CreatePaymentDto) {
-    return this.paymentsService.create(createPaymentDto);
+    return this.paymentsService.createPaymentSessio(createPaymentDto);
   }
 
   @Get('success')
