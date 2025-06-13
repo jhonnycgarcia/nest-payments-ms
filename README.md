@@ -100,5 +100,9 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 
 ## Stripe en local
 - `docker run --rm -it stripe/stripe-cli:latest`
-- `stripe listen --forward-to localhost:4242/webhook`
+- `stripe listen --forward-to localhost:3003/payments/webhook`
 - `stripe trigger payment_intent.succeeded`
+- https://hookdeck.com/
+- https://smee.io/
+- https://hookdeck.com/docs/cli#why-use-the-cli
+- `hookdeck listen 3003 stripe-to-local --path /payments/webhook`
