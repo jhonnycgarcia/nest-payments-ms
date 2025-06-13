@@ -62,7 +62,8 @@ export class PaymentsService {
           // console.dir({ event }, { depth: null })
           const chargeSucceeded = event.data.object as Stripe.Charge;
           const orderId = chargeSucceeded.metadata.orderId;
-          console.log({ orderId });
+          const metadata = chargeSucceeded.metadata;
+          console.log({ orderId, metadata });
 
           // TODO: llamar nuestro micro servicio de ordenes
           // TODO: llamar nuestro micro servicio de pagos
