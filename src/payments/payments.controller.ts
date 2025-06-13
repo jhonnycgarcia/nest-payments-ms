@@ -33,7 +33,6 @@ export class PaymentsController {
     @Req() request: Request,
     @Res() response: Response,
   ) {
-    console.log('stripeWebhook');
     return this.paymentsService.stripeWebhook(request, response);
   }
 

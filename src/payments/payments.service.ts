@@ -19,7 +19,7 @@ export class PaymentsService {
           name: item.name,
         },
         unit_amount: Math.round(item.price * 100),
-      },  
+      },
       quantity: item.quantity,
     }));
 
@@ -38,10 +38,21 @@ export class PaymentsService {
 
   async stripeWebhook(request: Request, response: Response) {
     const sig = request.headers['stripe-signature'];
-    console.log({ sig })
-    return response.status(200).json({sig});
-    // const event = this.stripe.webhooks.constructEvent(request.rawBody, sig, envs.STRIPE_WEBHOOK_SECRET);
-    // return event;
+
+    let event: Stripe.Event;
+    const endpointSecret = "whsec_0f86813f3d025dfc4d8ddaa2c92e0a090d36566a81efd757cc085300ebb8b997";
+
+    try {
+      event = this.stripe.webhooks.constructEvent(
+        request['rawBody'],
+        sig!,
+        endpointSecret
+      );
+      console.log({event});
+    } catch (error) {
+      console.log(error);
+      return response.status(400).json({ error: `Webhook Error: ${error.message}` });
+    }
   }
 
 }
