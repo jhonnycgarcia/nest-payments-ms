@@ -23,7 +23,9 @@ async function bootstrap() {
       options: {
         servers: envs.NATS_SERVERS,
       },
-    },
+    },{
+      inheritAppConfig: true,
+    }
   );
 
   await app.startAllMicroservices();
