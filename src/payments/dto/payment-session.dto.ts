@@ -4,6 +4,10 @@ import { ArrayMinSize, IsArray, IsNotEmpty, IsNumber, IsPositive, IsString, Vali
 export class PaymentSessionDto {
     @IsString()
     @IsNotEmpty()
+    orderId: string;
+
+    @IsString()
+    @IsNotEmpty()
     currency: string;
 
     @IsArray()
